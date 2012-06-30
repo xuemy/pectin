@@ -8,14 +8,15 @@ from tornado import httpserver, ioloop, options
 
 class HelloHandler(web.RequestHandler):
     def get(self):
-        self.write("hello, world")
+        self.render("home.html")
 
 
 class Application(TemplateApplicationMixin, MediaApplicationMixin,
         web.Application):
     def __init__(self):
         handlers = [("/", HelloHandler)]
-        super(Application, self).__init__(handlers)
+        super(Application, self).__init__(
+            handlers, debug=True, template_path="templates")
 
 
 options.parse_command_line()
