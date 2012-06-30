@@ -15,8 +15,8 @@ class Application(TemplateApplicationMixin, MediaApplicationMixin,
         web.Application):
     def __init__(self):
         handlers = [("/", HelloHandler)]
-        super(Application, self).__init__(
-            handlers, debug=True, template_path="templates")
+        super(Application, self).__init__(handlers, debug=True,
+                template_path="templates", media_path="media")
 
 
 options.parse_command_line()
