@@ -53,7 +53,8 @@ class MediaApplicationMixin(object):
     def __init__(self, handlers, *args, **settings):
         if "media_path" in settings:
             media_url_prefix = settings.get("media_url_prefix", "/media/")
-            handlers.append((r"/%s/(.*)" % media_url_prefix, MediaFileHandler))
+            handlers.append((r"/media/(.*)", MediaFileHandler,
+                    {"path": settings["media_path"]}))
         super(MediaApplicationMixin, self).__init__(handlers, *args, **settings)
 
 
