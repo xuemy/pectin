@@ -1,5 +1,3 @@
-#!/usr/bin/env python2.7
-# coding=utf-8
 '''
 WTForms Extend Field
 copy form https://github.com/rduplain/flask-wtf/

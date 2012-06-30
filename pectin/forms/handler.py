@@ -1,7 +1,3 @@
-#!/usr/bin/env python2.7
-# coding=utf-8
-
-
 class ValidationError(RuntimeError):
     """
     Raised when a validator fails to validate its form.
