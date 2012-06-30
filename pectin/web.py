@@ -21,9 +21,13 @@ class TemplateApplicationMixin(object):
         else:
             loader = FileSystemLoader(settings['template_path'])
         del self.ui_modules['Template']
+        if "debug" in settings:
+            auto_reload = settings["debug"]
+        else:
+            auto_reload = False
         self.template_environment = Environment(
                 loader=loader,
-                auto_reload=self.settings['debug'],
+                auto_reload=auto_reload,
                 autoescape=False,)
 
 
