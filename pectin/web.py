@@ -52,7 +52,7 @@ class MediaApplicationMixin(object):
     '''Media File Feature.'''
     def __init__(self, handlers, *args, **settings):
         if "media_path" in settings:
-            media_url_prefix = self.settings.get("media_url_prefix", "/media/")
+            media_url_prefix = settings.get("media_url_prefix", "/media/")
             handlers.append((r"/%s/(.*)" % media_url_prefix, MediaFileHandler))
         super(MediaApplicationMixin, self).__init__(handlers, *args, **settings)
 
