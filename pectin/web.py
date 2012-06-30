@@ -1,5 +1,8 @@
 import tornado
 import functools
+import forms
+import database
+from jinja2 import Environment, FileSystemLoader
 
 
 class Application(tornado.web.Application):
@@ -8,6 +11,39 @@ class Application(tornado.web.Application):
 
 class RequestHandler(tornado.web.RequestHandler):
     pass
+
+
+class TemplateApplicationMixin(object):
+    def __init__(self, *args, **settings):
+        super(TemplateApplicationMixin, self).__init__(*args, **settings)
+        if "template_path" not in settings:
+            return
+        if "template_loader" in settings:
+            loader = settings['template_loader']
+        else:
+            loader = FileSystemLoader(settings['template_path'])
+        del self.ui_modules['Template']
+        self.template_environment = Environment(
+                loader=loader,
+                auto_reload=self.settings['debug'],
+                autoescape=False,)
+
+
+class TemplateMixin(object):
+    def render_string(self, template_name, **context):
+        self.require_setting("template_path", "render")
+        context.update({
+            'xsrf': self.xsrf_form_html,
+            'request': self.request,
+            'settings': self.settings,
+            'me': self.current_user,
+            'static': self.static_url,
+            'domain': self.settings['site_domain'],
+            'sitename': self.settings['site_name'],
+            'handler': self, })
+        context.update(self.ui)  # Enabled tornado UI methods.
+        template = self.environment.get_template(template_name)
+        return template.render(**context)
 
 
 class MediaApplicationMixin(object):
@@ -71,3 +107,8 @@ def unauthenticated(method):
             raise tornado.web.HTTPError(403)
         return method(self, *args, **kwargs)
     return wrapper
+
+
+__all__ = ["Application", "RequestHandler", "TemplateApplicationMixin",
+        "TemplateMixin", "MediaApplicationMixin", "MediaMixin", "MediaFileHandler",
+        "unauthenticated", "database", "forms"]
