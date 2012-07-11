@@ -1,7 +1,7 @@
 Pectin
 ======
 
-![Logo](http://github.com/tioover/Pectin/raw/master/doc/images/logo.png)
+![Logo](http://github.com/tioover/Pectin/raw/master/website/media/logo.png)
 
 A python glue web application framework.
 
