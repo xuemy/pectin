@@ -40,6 +40,7 @@ class TemplateMixin(object):
             'settings': self.settings,
             'me': self.current_user,
             'static': self.static_url,
+            'media': self.media_url,
             'domain': self.settings['site_domain'],
             'sitename': self.settings['site_name'],
             'handler': self, })
