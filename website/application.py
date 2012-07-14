@@ -1,5 +1,6 @@
 from tornado import web
-from pectin.web import MediaApplicationMixin, TemplateApplicationMixin
+from pectin.web import MediaApplicationMixin, TemplateApplicationMixin,\
+        TemplateMixin, MediaMixin
 #from pectin.database import SQLAlchemy
 from pectin import forms
 from tornado import httpserver, ioloop, options
@@ -8,16 +9,21 @@ from wtforms import TextField
 #database = SQLAlchemy("sqlite:///test.sqlite")
 
 
+class BaseHandler(forms.AutoFormsMixin, TemplateMixin, MediaMixin,
+        web.RequestHandler):
+    pass
+
+
 class TestForm(forms.Form):
     text = TextField("Text Field")
 
 
-class HelloHandler(web.RequestHandler):
+class HelloHandler(BaseHandler):
     def get(self):
         self.render("home.html")
 
 
-class FormsTestHandler(web.RequestHandler):
+class FormsTestHandler(BaseHandler):
     Form = TestForm
 
     def get(self):

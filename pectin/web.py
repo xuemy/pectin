@@ -34,18 +34,20 @@ class TemplateApplicationMixin(object):
 class TemplateMixin(object):
     def render_string(self, template_name, **context):
         self.require_setting("template_path", "render")
-        context.update({
+        default_context = {
             'xsrf': self.xsrf_form_html,
             'request': self.request,
             'settings': self.settings,
-            'me': self.current_user,
-            'static': self.static_url,
-            'media': self.media_url,
-            'domain': self.settings['site_domain'],
-            'sitename': self.settings['site_name'],
-            'handler': self, })
+            'current_user': self.current_user,
+            'static_url': self.static_url,
+            'handler': self,
+        }
+        if hasattr(self, "media_url"):
+            default_context["media_url"] = self.media_url
+        context.update(default_context)
         context.update(self.ui)  # Enabled tornado UI methods.
-        template = self.environment.get_template(template_name)
+        template = self.application.template_environment.get_template(
+                template_name)
         return template.render(**context)
 
 
@@ -53,7 +55,6 @@ class MediaApplicationMixin(object):
     '''Media File Feature.'''
     def __init__(self, handlers, *args, **settings):
         if "media_path" in settings:
-            media_url_prefix = settings.get("media_url_prefix", "/media/")
             handlers.append((r"/media/(.*)", MediaFileHandler,
                     {"path": settings["media_path"]}))
         super(MediaApplicationMixin, self).__init__(handlers, *args, **settings)
@@ -84,7 +85,7 @@ class MediaFileHandler(tornado.web.StaticFileHandler):
     @classmethod
     def make_static_url(cls, settings, path):
         settings = cls.set_media_settings(settings)
-        super(MediaFileHandler, cls).make_static_url(settings, path)
+        return tornado.web.StaticFileHandler.make_static_url(settings, path)
 
 
 class MediaMixin(object):
