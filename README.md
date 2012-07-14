@@ -1,8 +1,13 @@
 Pectin
 ======
 
-![Logo](http://github.com/tioover/Pectin/raw/master/website/media/logo.png)
+![The Logo](http://github.com/tioover/Pectin/raw/master/website/media/logo.png)
 
-A python glue web application framework.
+A python web application thin glue layer, that was base on the
+[Tornado](http://github.com/facebook/tornado), and other.
 
-Overridden form the [Hanger](http://github.com/tioover/hanger) project.
+hope this project make you have fun.
+
+Overridden form the [Hanger](httpkkjjj://github.com/tioover/hanger) project.
+
+**MIT LECENSE**
