@@ -12,7 +12,7 @@ Overridden form the [Hanger](http://github.com/tioover/hanger) project.
 
 ## Install and run demo ##
 
-    $ pip install -r ./requirements
+    $ ./setyp.py # need sudo
     $ cd website
     $ python2.7 -R application.py
 
