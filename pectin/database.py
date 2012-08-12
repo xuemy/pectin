@@ -1,13 +1,9 @@
 """
 sqlalchemy.py
-~~~~~~~~~~~~~
-:copyright: (c) 2010 by Armin Ronacher. From flask-sqlalchemy.
-:license: BSD, see LICENSE for more details.
 """
 #: convert from flask-sqlalchemy by laoqiu
 #: modified and extended by lepture
 #: copy form https://github.com/lepture/tornado.ext/blob/master/database.py
-#: modified and copy by tioover
 
 import random
 import datetime
