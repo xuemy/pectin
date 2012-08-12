@@ -8,6 +8,12 @@ A python web application thin glue layer, that was base on the
 
 hope this project make you have fun.
 
-Overridden form the [Hanger](httpkkjjj://github.com/tioover/hanger) project.
+Overridden form the [Hanger](http://github.com/tioover/hanger) project.
+
+## Install and run demo ##
+
+    $ pip install -r ./requirements
+    $ cd website
+    $ python2.7 -R application.py
 
 **MIT LECENSE**
