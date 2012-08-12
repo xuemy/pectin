@@ -6,7 +6,13 @@
     <h1>Pectin.</h1>
     <img src="{{media_url("logo.png")}}" alt="Pectin logo.">
     <h2>The Form Example</h2>
-    {{ forms["TestForm"].text.label() }}
-    {{ forms["TestForm"].text() }}
+    	{% if result %}
+    		<p>The <strong>retrun value</strong> is <code>{{result}}</code></p>
+    	{% endif %}
+	    <form method="POST" action="/forms">
+	    {{ forms["TestForm"].text.label() }}
+	    {{ forms["TestForm"].text() }}
+	    <input type="submit" value="test post">
+    </form>
 </body>
 </html>

@@ -26,8 +26,16 @@ class AutoFormsMixin(object):
             forms.append(Form)
         return forms
 
-    def form_loader(self, key=None, validate=True):
+    def getform(self, key=None, validate=True):
         '''Get and validate a form.'''
+        form = self.form_loader(key)
+        if validate:
+            if not self.form_validate(form):
+                # form validate.
+                raise ValidationError("This form is not pass the validation.")
+        return form
+
+    def form_loader(self, key):
         if not key:
             # return default form
             try:
@@ -36,19 +44,16 @@ class AutoFormsMixin(object):
                 raise RuntimeError("Not set default form.")
         else:
             form = self.forms[key].__class__(self)
-        if validate:
-            if not self.form_validate(form):
-                # form validate.
-                raise ValidationError("This form is not pass the validation.")
         return form
 
     def form_validate(self, form, *args, **kwargs):
         '''Automated handle of Forms validate.'''
         if form.validate():
-            return form
-        self.forms.update({form.__class__.__name__: form})
-        self.render(*args, **kwargs)
-        return False
+            return True
+        else:
+            self.forms.update({form.__class__.__name__: form})
+            self.render(*args, **kwargs)
+            return False
 
     def render(self, *args, **context):
         if "forms" not in context:

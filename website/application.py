@@ -29,6 +29,10 @@ class FormsTestHandler(BaseHandler):
     def get(self):
         self.render("forms.html")
 
+    def post(self):
+        form = self.getform()
+        self.render("forms.html", result=form.text.data)
+
 
 class Application(TemplateApplicationMixin, MediaApplicationMixin,
         web.Application):
