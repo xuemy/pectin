@@ -1,4 +1,4 @@
-import tornado
+import tornado.web
 import functools
 from jinja2 import Environment, FileSystemLoader
 
