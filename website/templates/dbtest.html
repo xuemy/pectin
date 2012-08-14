@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Database, From Pectin.</title>
+</head>
+<body>
+    <h1><a href="/">Pectin</a></h1>
+    <h2>The Database Example</h2>
+    <form method="POST" action="/dbtest">
+        {{ forms["TestForm"].text.label() }}
+        {{ forms["TestForm"].text() }}
+        <input type="submit" value="test post">
+    </form>
+	{% for i in list %}
+		<li id="item-{{i.id}}"><code>{{i.content}}</code></li>
+	{% endfor %}
+</body>
+</html>
