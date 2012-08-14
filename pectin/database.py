@@ -138,7 +138,6 @@ class DjangoQuery(Query):
 
 class Model(object):
     id = Column(Integer, primary_key=True)  # primary key
-    create_date = Column(DateTime)
     query = None
 
     @declared_attr
@@ -150,7 +149,6 @@ class Model(object):
         return {'mysql_engine': 'InnoDB'}
 
     def __init__(self, **kwargs):
-        self.create_date = datetime.datetime.now()
         for k, v in kwargs.iteritems():
             setattr(self, k, v)
 
