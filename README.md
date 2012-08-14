@@ -12,8 +12,12 @@ Overridden form the [Hanger](http://github.com/tioover/hanger) project.
 
 ## Install and run demo ##
 
-    $ ./setyp.py # need sudo
+### Run Example ###
     $ cd website
     $ python2.7 -R application.py
 
-**MIT LECENSE**
+### Install ###
+    $ ./setpy.py # need sudo
+
+## LECENSE ###
+MIT LECENSE
