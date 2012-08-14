@@ -24,7 +24,9 @@ class HelloHandler(BaseHandler):
 
 
 class FormsTestHandler(BaseHandler):
-    Form = TestForm
+    @property
+    def Form(self):
+        return TestForm
 
     def get(self):
         self.render("forms.html")
