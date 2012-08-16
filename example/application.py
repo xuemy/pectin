@@ -68,15 +68,19 @@ class DataBaseTestHandler(BaseHandler):
         self.render("dbtest.html", list=self.item_list)
 
     def post(self):
-        form = self.getform(template_name="forms.html")
-        database.session.add(Item(content=form.text.data))
         try:
-            database.session.commit()
-        except:
-            database.create_db()
-            database.session.rollback()
-            database.session.commit()
-        self.render("dbtest.html", list=self.item_list)
+            form = self.getform()
+        except forms.ValidationError:
+            self.render("dbtest.html", list=self.item_list)
+        else:
+            database.session.add(Item(content=form.text.data))
+            try:
+                database.session.commit()
+            except:
+                database.create_db()
+                database.session.rollback()
+                database.session.commit()
+            self.render("dbtest.html", list=self.item_list)
 
 
 class Application(TemplateApplicationMixin, MediaApplicationMixin,
