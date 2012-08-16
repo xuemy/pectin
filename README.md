@@ -13,7 +13,7 @@ Overridden form the [Hanger](http://github.com/tioover/hanger) project.
 ## Install and run demo ##
 
 ### Run Example ###
-    $ cd website
+    $ cd example
     $ python2.7 -R application.py
 
 ### Install ###
