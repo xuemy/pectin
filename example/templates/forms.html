@@ -8,10 +8,12 @@
     	{% if result %}
     		<p>The <strong>retrun value</strong> is <code>{{result}}</code></p>
     	{% endif %}
-        <form method="POST" action="/forms">
+    <form method="POST" action="/forms">
         {{ forms["TestForm"].text.label() }}
         {{ forms["TestForm"].text() }}
         <input type="submit" value="test post">
     </form>
+    <h2>Multi Form</h2>
+    {{ forms["TestForm2"].text() }}
 </body>
 </html>

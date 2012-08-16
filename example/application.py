@@ -20,6 +20,10 @@ class TestForm(forms.Form):
     text = TextField("Text Field")
 
 
+class TestForm2(forms.Form):
+    text = TextField("Text Field")
+
+
 class Item(database.Model):
     content = Column(String)
 
@@ -33,6 +37,11 @@ class FormsTestHandler(BaseHandler):
     @property
     def Form(self):
         return TestForm
+
+    @property
+    def formset(self):
+        '''Multi-form'''
+        return [TestForm2, ]
 
     def get(self):
         self.render("forms.html")
