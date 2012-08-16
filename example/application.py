@@ -1,4 +1,3 @@
-import datetime
 from tornado import web
 from pectin.web import MediaApplicationMixin, TemplateApplicationMixin,\
         TemplateMixin, MediaMixin
@@ -6,6 +5,7 @@ from pectin.database import SQLAlchemy
 from pectin import forms
 from tornado import httpserver, ioloop, options
 from wtforms import TextField
+from wtforms.validators import Required, Length
 from sqlalchemy import Column, String
 
 database = SQLAlchemy("sqlite:///test.sqlite")
@@ -17,11 +17,11 @@ class BaseHandler(forms.AutoFormsMixin, TemplateMixin, MediaMixin,
 
 
 class TestForm(forms.Form):
-    text = TextField("Text Field")
+    text = TextField("Text Field", [Required(), Length(min=2)])
 
 
-class TestForm2(forms.Form):
-    text = TextField("Text Field")
+class TestForm2(TestForm):
+    pass
 
 
 class Item(database.Model):
@@ -47,8 +47,12 @@ class FormsTestHandler(BaseHandler):
         self.render("forms.html")
 
     def post(self):
-        form = self.getform()
-        self.render("forms.html", result=form.text.data)
+        try:
+            form = self.getform()
+        except forms.ValidationError:
+            self.render("forms.html")
+        else:
+            self.render("forms.html", result=form.text.data)
 
 
 class DataBaseTestHandler(BaseHandler):
@@ -64,7 +68,7 @@ class DataBaseTestHandler(BaseHandler):
         self.render("dbtest.html", list=self.item_list)
 
     def post(self):
-        form = self.getform()
+        form = self.getform(template_name="forms.html")
         database.session.add(Item(content=form.text.data))
         try:
             database.session.commit()
