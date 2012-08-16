@@ -1,7 +1,7 @@
 Pectin
 ======
 
-![The Logo](http://github.com/tioover/Pectin/raw/master/website/media/logo.png)
+![The Logo](http://github.com/tioover/Pectin/raw/master/example/media/logo.png)
 
 A python web application thin glue layer, that was base on the
 [Tornado](http://github.com/facebook/tornado), and other.
