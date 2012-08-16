@@ -11,20 +11,23 @@ class FormsDict(dict):
     def append(self, Form):
         self[Form.__name__] = Form()
 
+    def update(self, *forms):
+        for form in forms:
+            self[form.__class__.__name__] = form
+
 
 class AutoFormsMixin(object):
     '''Auto add form to `forms`dict in the templates.'''
     Form = None
     formset = []
 
-    @property
-    def forms(self):
-        forms = FormsDict()
+    def __init__(self, *args, **kwargs):
+        self.forms = FormsDict()
         if self.Form:
-            forms.append(self.Form)
+            self.forms.append(self.Form)
         for Form in self.formset:
-            forms.append(Form)
-        return forms
+            self.forms.append(Form)
+        super(AutoFormsMixin, self).__init__(*args, **kwargs)
 
     def getform(self, key=None, validate=True):
         '''Get and validate a form.'''
@@ -51,8 +54,7 @@ class AutoFormsMixin(object):
         if form.validate():
             return True
         else:
-            self.forms.update({form.__class__.__name__: form})
-            self.render(*args, **kwargs)
+            self.forms.update(form)
             return False
 
     def render(self, *args, **context):
