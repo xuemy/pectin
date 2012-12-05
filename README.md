@@ -14,7 +14,7 @@ Overridden form the [Hanger](http://github.com/tioover/hanger) project.
 
 ### Run Example ###
     $ cd example
-    $ python2.7 -R application.py
+    $ python2.7 application.py
 
 ### Install ###
     $ ./setpy.py # need sudo
