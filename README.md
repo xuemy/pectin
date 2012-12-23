@@ -19,7 +19,8 @@ It's simple, but first shoult install:
 ### Run Example ###
     $ cd example
     $ python2.7 application.py
-    Browser Open [http://0.0.0.0:8888/](http://0.0.0.0:8888/)
+
+Browser Open [http://0.0.0.0:8888/](http://0.0.0.0:8888/)
 
 ### Install ###
     $ ./setpy.py # need sudo
