@@ -6,7 +6,7 @@ from pectin import forms
 from tornado import httpserver, ioloop, options
 from wtforms import TextField
 from wtforms.validators import Required, Length
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, exc
 
 database = SQLAlchemy("sqlite:///test.sqlite")
 
@@ -29,6 +29,7 @@ class Item(database.Model):
 
 
 class HelloHandler(BaseHandler):
+    @web.addslash
     def get(self):
         self.render("home.html")
 
@@ -43,6 +44,7 @@ class FormsTestHandler(BaseHandler):
         '''Multi-form'''
         return [TestForm2, ]
 
+    @web.addslash
     def get(self):
         self.render("forms.html")
 
@@ -58,12 +60,18 @@ class FormsTestHandler(BaseHandler):
 class DataBaseTestHandler(BaseHandler):
     @property
     def item_list(self):
-        return Item.query.all()
+        try:
+            return Item.query.all()
+        except exc.OperationalError:
+            database.create_db()
+            database.session.rollback()
+            return Item.query.all()
 
     @property
     def Form(self):
         return TestForm
 
+    @web.addslash
     def get(self):
         self.render("dbtest.html", list=self.item_list)
 
@@ -76,7 +84,7 @@ class DataBaseTestHandler(BaseHandler):
             database.session.add(Item(content=form.text.data))
             try:
                 database.session.commit()
-            except:
+            except exc.OperationalError:
                 database.create_db()
                 database.session.rollback()
                 database.session.commit()

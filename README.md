@@ -14,15 +14,17 @@ It's simple, but first shoult install:
 
 * SQLAlchemy
 * WTForms
+* jinja2
 
 ### Run Example ###
     $ cd example
     $ python2.7 application.py
+    Browser Open [http://0.0.0.0:8888/](http://0.0.0.0:8888/)
 
 ### Install ###
     $ ./setpy.py # need sudo
 
-## othoer ###
+## Othoer ###
 use MIT LECENSE.
 
 Overridden form the [Hanger](http://github.com/tioover/hanger) project.
