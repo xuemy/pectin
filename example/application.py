@@ -75,6 +75,7 @@ class DataBaseTestHandler(BaseHandler):
     def get(self):
         self.render("dbtest.html", list=self.item_list)
 
+    @web.addslash
     def post(self):
         try:
             form = self.getform()
