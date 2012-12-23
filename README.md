@@ -8,11 +8,11 @@ A python web application thin glue layer, that was base on the
 
 hope this project make you have fun.
 
+*Not support windows!*
+
 ## Install and run demo ##
 
 It's simple, but first shoult install:
-
-**Not support windows!**
 
 * SQLAlchemy
 * WTForms
