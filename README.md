@@ -12,6 +12,8 @@ hope this project make you have fun.
 
 It's simple, but first shoult install:
 
+**Not support windows!**
+
 * SQLAlchemy
 * WTForms
 * jinja2
