@@ -9,15 +9,20 @@ Python web application thin glue layer with [Tornado](http://github.com/facebook
 
 First, you need to install: 
 
-* SQLAlchemy
-* WTForms
-* jinja2
+* Tornado - Web Framework and Server.
+* SQLAlchemy - Database ORM.
+* WTForms - Forms verification.
+* Jinja2 - HTML Template engine.
+
+Pectin is Loosely coupled. You can choose what components you want to use.
+For example, if you do want not use Jinja2, you can remove `TemplateMixin`
+from `BaseHandle` or modify `TemplateMixin` to change Template engine.
 
 ## Run Example ##
     $ cd example
     $ python2.7 application.py
 
-Then, Browser Open [http://0.0.0.0:8888/](http://0.0.0.0:8888/)
+Then, browser open [0.0.0.0:8888/](http://0.0.0.0:8888/)
 
 ## Install ##
     $ ./setpy.py # need sudo
