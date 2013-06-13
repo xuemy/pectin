@@ -6,13 +6,9 @@ Pectin
 A python web application thin glue layer, that was base on the
 [Tornado](http://github.com/facebook/tornado) and other.
 
-hope this project make you have fun.
-
-*Not support windows!*
-
 ## Install and run demo ##
 
-It's simple, but first shoult install:
+It's simple, but need install:
 
 * SQLAlchemy
 * WTForms
@@ -25,9 +21,9 @@ It's simple, but first shoult install:
 Browser Open [http://0.0.0.0:8888/](http://0.0.0.0:8888/)
 
 ### Install ###
-    $ ./setpy.py # need sudo
+    $ ./setpy.py # sudo
 
-## Othoer ###
-use MIT LECENSE.
+
+**MIT LECENSE.**
 
 Overridden form the [Hanger](http://github.com/tioover/hanger) project.
