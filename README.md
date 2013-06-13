@@ -1,29 +1,29 @@
 Pectin
 ======
 
-![The Logo](http://github.com/tioover/Pectin/raw/master/example/media/logo.png)
+![Logo](http://github.com/tioover/Pectin/raw/master/example/media/logo.png)
 
-A python web application thin glue layer, that was base on the
-[Tornado](http://github.com/facebook/tornado) and other.
+Python web application thin glue layer with [Tornado](http://github.com/facebook/tornado).
 
-## Install and run demo ##
+## Preparation ##
 
-It's simple, but need install:
+First, you need to install: 
 
 * SQLAlchemy
 * WTForms
 * jinja2
 
-### Run Example ###
+## Run Example ##
     $ cd example
     $ python2.7 application.py
 
-Browser Open [http://0.0.0.0:8888/](http://0.0.0.0:8888/)
+Then, Browser Open [http://0.0.0.0:8888/](http://0.0.0.0:8888/)
 
-### Install ###
-    $ ./setpy.py # sudo
+## Install ##
+    $ ./setpy.py # need sudo
 
+------
 
-**MIT LECENSE.**
+Distribution on **MIT LECENSE** .
 
 Overridden form the [Hanger](http://github.com/tioover/hanger) project.
