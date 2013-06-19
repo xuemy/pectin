@@ -52,7 +52,7 @@ class TemplateMixin(object):
 
 
 class MediaApplicationMixin(object):
-    '''Media File Feature.'''
+    '''Media File Feature, routing files that users upload.'''
     def __init__(self, handlers, *args, **settings):
         if "media_path" in settings:
             handlers.append((r"/media/(.*)", MediaFileHandler,
