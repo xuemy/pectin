@@ -7,7 +7,7 @@ from setuptools import setup
 
 setup(
     name='Pectin',
-    version='0.201208',
+    version='0.201306',
     url='http://github.com/tioover/Pectin/',
     license='MIT',
     author='tioover',
@@ -22,7 +22,6 @@ setup(
         'Tornado',
         'Jinja2',
         'WTForms',
-        'SQLAlchemy',
     ],
     classifiers=[
         'Environment :: Web Environment',

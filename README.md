@@ -1,5 +1,3 @@
-Pectin
-======
 
 ![Logo](http://github.com/tioover/Pectin/raw/master/example/media/logo.png)
 
@@ -10,7 +8,6 @@ Python web application thin glue layer with [Tornado](http://github.com/facebook
 First, you need to install: 
 
 * Tornado - Web Framework and Server.
-* SQLAlchemy - Database ORM.
 * WTForms - Forms verification.
 * Jinja2 - HTML Template engine.
 
@@ -20,12 +17,12 @@ from `BaseHandle` or modify `TemplateMixin` to change Template engine.
 
 ## Run Example ##
     $ cd example
-    $ python2.7 application.py
+    $ python2 application.py # or python3.
 
-Then, browser open [0.0.0.0:8888/](http://0.0.0.0:8888/)
+Then, browser open [0.0.0.0:8888](http://0.0.0.0:8888/)
 
 ## Install ##
-    $ ./setpy.py # need sudo
+    $ ./setpy.py # need sudo.
 
 ------
 
