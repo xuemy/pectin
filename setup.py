@@ -7,7 +7,7 @@ from setuptools import setup
 
 setup(
     name='Pectin',
-    version='0.201306',
+    version='0.9',
     url='http://github.com/tioover/Pectin/',
     license='MIT',
     author='tioover',

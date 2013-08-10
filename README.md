@@ -3,6 +3,12 @@
 
 Python web application thin glue layer with [Tornado](http://github.com/facebook/tornado).
 
+## Feature ##
+
+* `static` with `media` separate, `media` is the file ueser upload.
+* Use Jinja2 template render, not tornado default.
+* Integrate WTForms forms framework, had HTML5 forms field support.
+
 ## Preparation ##
 
 First, you need to install: 
