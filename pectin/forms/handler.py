@@ -13,20 +13,16 @@ class FormsDict(dict):
 
     def update(self, *forms):
         for form in forms:
-            self[form.__class__.__name__] = form
+            self[form.__name__] = form()
 
 
 class AutoFormsMixin(object):
     '''Auto add form to `forms`dict in the templates.'''
-    Form = None
     formset = []
 
     def __init__(self, *args, **kwargs):
         self.forms = FormsDict()
-        if self.Form:
-            self.forms.append(self.Form)
-        for Form in self.formset:
-            self.forms.append(Form)
+        self.forms.update(*self.formset)
         super(AutoFormsMixin, self).__init__(*args, **kwargs)
 
     def getform(self, key=None, validate=True):

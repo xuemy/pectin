@@ -18,7 +18,7 @@ class TestForm(forms.Form):
     text = TextField("Text Field", [Required(), Length(min=2)])
 
 
-class TestForm2(TestForm):
+class AnotherTestForm(TestForm):
     pass
 
 
@@ -29,14 +29,7 @@ class HelloHandler(BaseHandler):
 
 
 class FormsTestHandler(BaseHandler):
-    @property
-    def Form(self):
-        return TestForm
-
-    @property
-    def formset(self):
-        '''Multi-form'''
-        return [TestForm2, ]
+    formset = [TestForm, AnotherTestForm, ]
 
     @web.addslash
     def get(self):
