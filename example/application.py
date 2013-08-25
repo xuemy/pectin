@@ -1,14 +1,14 @@
 from tornado import web
 from pectin.web import MediaApplicationMixin, TemplateApplicationMixin,\
-        TemplateMixin, MediaMixin
+    TemplateMixin, MediaMixin
 from pectin import forms
 from tornado import httpserver, ioloop, options
 from wtforms import TextField
 from wtforms.validators import Required, Length
 
 
-class BaseHandler(forms.AutoFormsMixin, TemplateMixin, MediaMixin,
-        web.RequestHandler):
+class BaseHandler(forms.AutoFormsMixin, MediaMixin, TemplateMixin,
+                  web.RequestHandler):
     pass
 
 
@@ -50,14 +50,15 @@ class FormsTestHandler(BaseHandler):
 
 
 class Application(TemplateApplicationMixin, MediaApplicationMixin,
-        web.Application):
+                  web.Application):
     def __init__(self):
         handlers = [
             ("/", HelloHandler),
             ("/forms/?", FormsTestHandler),
         ]
         super(Application, self).__init__(handlers, debug=True,
-                template_path="templates", media_path="media")
+                                          template_path="templates",
+                                          media_path="media")
 
 
 options.parse_command_line()

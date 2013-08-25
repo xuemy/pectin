@@ -107,7 +107,7 @@ class MediaMixin(object):
     def render_string(self, template_name, **context):
         if hasattr(self, "media_url"):
             context["media_url"] = self.media_url
-        super(MediaMixin, self).render_string(template_name, **context)
+        return super(MediaMixin, self).render_string(template_name, **context)
 
 
 def unauthenticated(method):
