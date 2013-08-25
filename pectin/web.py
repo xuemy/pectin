@@ -26,9 +26,9 @@ class TemplateApplicationMixin(object):
         else:
             auto_reload = False
         self.template_environment = Environment(
-                loader=loader,
-                auto_reload=auto_reload,
-                autoescape=False,)
+            loader=loader,
+            auto_reload=auto_reload,
+            autoescape=False,)
 
 
 class TemplateMixin(object):
@@ -47,7 +47,7 @@ class TemplateMixin(object):
         context.update(default_context)
         context.update(self.ui)  # Enabled tornado UI methods.
         template = self.application.template_environment.get_template(
-                template_name)
+            template_name)
         return template.render(**context)
 
 
@@ -56,8 +56,9 @@ class MediaApplicationMixin(object):
     def __init__(self, handlers, *args, **settings):
         if "media_path" in settings:
             handlers.append((r"/media/(.*)", MediaFileHandler,
-                    {"path": settings["media_path"]}))
-        super(MediaApplicationMixin, self).__init__(handlers, *args, **settings)
+                             {"path": settings["media_path"]}))
+        super(MediaApplicationMixin, self).__init__(
+            handlers, *args, **settings)
 
 
 class MediaFileHandler(tornado.web.StaticFileHandler):
@@ -65,7 +66,8 @@ class MediaFileHandler(tornado.web.StaticFileHandler):
         Media file handler bese on the StaticFileHandler.
 
             application = web.Application([
-                (r"/media/(.*)", pectin.web.MediaFileHandler, {"path": "/var/www"}),
+                (r"/media/(.*)", pectin.web.MediaFileHandler,
+                 {"path": "/var/www"}),
             ])
     '''
     def initialize(self, *args, **kwargs):
@@ -75,7 +77,8 @@ class MediaFileHandler(tornado.web.StaticFileHandler):
     @classmethod
     def set_media_settings(cls, settings):
         settings["static_path"] = settings["media_path"]
-        settings["static_url_prefix"] = settings.get("media_url_prefix", "/media/")
+        settings["static_url_prefix"] = settings.get(
+            "media_url_prefix", "/media/")
         return settings
 
     @property
@@ -115,5 +118,5 @@ def unauthenticated(method):
 
 
 __all__ = ["Application", "RequestHandler", "TemplateApplicationMixin",
-        "TemplateMixin", "MediaApplicationMixin", "MediaMixin", "MediaFileHandler",
-        "unauthenticated"]
+           "TemplateMixin", "MediaApplicationMixin", "MediaMixin",
+           "MediaFileHandler", "unauthenticated"]
