@@ -42,8 +42,6 @@ class TemplateMixin(object):
             'static_url': self.static_url,
             'handler': self,
         }
-        if hasattr(self, "media_url"):
-            default_context["media_url"] = self.media_url
         context.update(default_context)
         context.update(self.ui)  # Enabled tornado UI methods.
         template = self.application.template_environment.get_template(
@@ -105,6 +103,11 @@ class MediaMixin(object):
         else:
             base = ""
         return base + media_handler_class.make_static_url(self.settings, path)
+
+    def render_string(self, template_name, **context):
+        if hasattr(self, "media_url"):
+            context["media_url"] = self.media_url
+        super(MediaMixin, self).render_string(template_name, **context)
 
 
 def unauthenticated(method):
