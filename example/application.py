@@ -7,7 +7,9 @@ from wtforms import TextField
 from wtforms.validators import Required, Length
 
 
-class BaseHandler(forms.AutoFormsMixin, MediaMixin, TemplateMixin,
+class BaseHandler(forms.AutoFormsMixin,
+                  MediaMixin,  # MediaMixin MUST be in front of TemplateMixin.
+                  TemplateMixin,
                   web.RequestHandler):
     pass
 
