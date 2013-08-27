@@ -1,4 +1,3 @@
-
 ![Logo](http://github.com/tioover/Pectin/raw/master/example/media/logo.png)
 
 Python web application thin glue layer with [Tornado](http://github.com/facebook/tornado).
@@ -28,6 +27,9 @@ from `BaseHandle` or modify `TemplateMixin` to change Template engine.
 Then, browser open [0.0.0.0:8888](http://0.0.0.0:8888/)
 
 ## Install ##
+	
+Not recommend, recommend place `pectin` folder on your project.
+
     $ ./setpy.py # need sudo.
 
 ------
