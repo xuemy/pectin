@@ -1,6 +1,6 @@
 ![Logo](http://github.com/tioover/Pectin/raw/master/example/media/logo.png)
 
-Python web application thin glue layer with [Tornado](http://github.com/facebook/tornado). [简单说明](http://eggfan.org/2349)
+Python web application thin glue layer with [Tornado](http://github.com/facebook/tornado). (chinese: [简单说明](http://eggfan.org/2349))
 
 ## Feature ##
 
