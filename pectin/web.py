@@ -68,25 +68,23 @@ class MediaFileHandler(tornado.web.StaticFileHandler):
                  {"path": "/var/www"}),
             ])
     '''
-    def initialize(self, *args, **kwargs):
-        self.require_setting("media_path")
-        super(MediaFileHandler, self).initialize(*args, **kwargs)
 
     @classmethod
-    def set_media_settings(cls, settings):
-        settings["static_path"] = settings["media_path"]
-        settings["static_url_prefix"] = settings.get(
-            "media_url_prefix", "/media/")
-        return settings
+    def make_static_url(cls, settings, path, include_version=True):
+        url = settings.get('media_url_prefix', '/media/') + path
+        if not include_version:
+            return url
 
-    @property
-    def settings(self):
-        return self.set_media_settings(self.application.settings)
+        version_hash = cls.get_version(settings, path)
+        if not version_hash:
+            return url
+
+        return '%s?v=%s' % (url, version_hash)
 
     @classmethod
-    def make_static_url(cls, settings, path):
-        settings = cls.set_media_settings(settings)
-        return tornado.web.StaticFileHandler.make_static_url(settings, path)
+    def get_version(cls, settings, path):
+        abs_path = cls.get_absolute_path(settings['media_path'], path)
+        return cls._get_cached_version(abs_path)
 
 
 class MediaMixin(object):

@@ -1,25 +1,21 @@
-<html>
-<head>
-    <title>Form, From Pectin.</title>
-</head>
-<body>
-    <h1><a href="/">Pectin</a></h1>
-    <h2>The Form Example</h2>
-    	{% if result %}
-    		<p>The <strong>retrun value</strong> is <code>{{result}}</code></p>
-    	{% endif %}
-    <form method="POST" action="/forms">
-        {{ forms["TestForm"].text.label() }}
-        {{ forms["TestForm"].text() }}
-        <p><em>validation: length > 2 </em></p>
-        <ul>
-        {% for error in forms["TestForm"].text.errors %}
-            <li>{{error}}</li>
-        {% endfor %}
-        </ul>
-        <input type="submit" value="test post">
-    </form>
-    <h2>Multi Form</h2>
-    {{ forms["AnotherTestForm"].text() }}
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Forms Demo{% endblock %}
+{% block body %}
+<h2>The Form Example</h2>
+    {% if result %}
+        <p class="result">The <strong>retrun value</strong> is <code>{{result}}</code></p>
+    {% endif %}
+<form method="POST" action="/forms">
+    {{ forms["TestForm"].text.label() }}
+    {{ forms["TestForm"].text() }}
+    <p class="small">Validation: length ≧ 2 </p>
+    <ul class="errors">
+    {% for error in forms["TestForm"].text.errors %}
+        <li>{{error}}</li>
+    {% endfor %}
+    </ul>
+    <input type="submit" value="POST">
+</form>
+<h2>Multi Form</h2>
+{{ forms["AnotherTestForm"].text() }}
+{% endblock %}

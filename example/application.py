@@ -53,6 +53,7 @@ class Application(TemplateApplicationMixin, MediaApplicationMixin,
         ]
         super(Application, self).__init__(handlers, debug=True,
                                           template_path="templates",
+                                          static_path="static",
                                           media_path="media")
 
 
