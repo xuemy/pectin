@@ -13,7 +13,7 @@ class FormsDict(dict):
 
     def update(self, *forms):
         for form in forms:
-            self[form.__name__] = form()
+            self[form.__class__.__name__] = form
 
 
 class AutoFormsMixin(object):
@@ -22,7 +22,7 @@ class AutoFormsMixin(object):
 
     def __init__(self, *args, **kwargs):
         self.forms = FormsDict()
-        self.forms.update(*self.formset)
+        self.forms.update(*[Form() for Form in self.formset])
         super(AutoFormsMixin, self).__init__(*args, **kwargs)
 
     def getform(self, key=None, validate=True):

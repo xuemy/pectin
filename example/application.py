@@ -37,7 +37,7 @@ class FormsTestHandler(BaseHandler):
 
     def post(self):
         try:
-            form = self.getform()
+            form = self.getform("TestForm")
         except forms.ValidationError:
             self.render("forms.html")
         else:
